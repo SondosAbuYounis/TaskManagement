@@ -67,6 +67,7 @@ export const addTodoAsync = createAsyncThunk(
     try {
       const response = await axios.post('http://localhost:7000/todos', {
         title: payload.title,
+        description: payload.description,
       });
       return { todo: response.data };
     } catch (error) {
@@ -117,6 +118,7 @@ const todoSlice = createSlice({
             const newTodo = {
                 id : Date.now(),
                 title: action.payload.title,
+                description: action.payload.description,
                 completed : false 
             };
             state.push(newTodo);

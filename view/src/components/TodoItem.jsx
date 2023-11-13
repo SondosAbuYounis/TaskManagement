@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { toggleComplete } from '../redux/todoSlice';
 import { toggleCompleteAsync, deleteTodo, toggleDeleteAsync } from '../redux/todoSlice';
 
-const TodoItem = ({ id, title, completed }) => {
+const TodoItem = ({ id, title, description, completed }) => {
     const dispatch = useDispatch();
 
     // const handleCompleteClick = () => {
@@ -23,15 +23,19 @@ const TodoItem = ({ id, title, completed }) => {
     }
 
     return (
-		<li className={`list-group-item ${completed && 'list-group-item-success'}`}>
-			<div className='d-flex justify-content-between'>
-				<span className='d-flex align-items-center'>
-					<input type='checkbox' className='mr-3' checked={completed} onChange={handleCompleteClick}></input>
-					{title}
+		<div className='flex flex-row gap-16 h-44 border border-[#000] bg-[#ffffff50] rounded-[1.75rem]'>
+			<div className='flex flex-col p-4 gap-8 justify-center items-center'>
+				<span className='d-flex align-items-center gap-2'>
+					<input type='checkbox' className='font-semibold' checked={completed} onChange={handleCompleteClick}></input>
+					<div>
+					<div className='font-semibold'>{title}</div>
+					</div>
 				</span>
-				<button onClick={handleDeleteClick} className='btn btn-danger'>Delete</button>
+				<div>{description}</div>
+
+				<button onClick={handleDeleteClick} className='border border-[#000] bg-[#37373750] hover:bg-[#ffffff50] rounded-[1.25rem] w-32 h-8 text-[#000]'>Delete</button>
 			</div>
-		</li>
+		</div>
 	);
 };
 

@@ -6,8 +6,8 @@ import TotalCompleteItems from './components/TotalCompleteItems';
 
 const App = () => {
 	return (
-		<div className='container bg-white p-4 mt-5'>
-			<h1>My Todo List</h1>
+		<div className='container bg-[#37373750] p-4 mt-5'>
+			<div className='font-semibold text-[#373737] text-[2rem] text-center'>My bucket List =')</div>
 			<AddTodoForm />
 			<TodoList />
 			<TotalCompleteItems />
