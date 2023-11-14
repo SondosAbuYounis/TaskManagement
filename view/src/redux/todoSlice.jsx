@@ -68,6 +68,7 @@ export const addTodoAsync = createAsyncThunk(
       const response = await axios.post('http://localhost:7000/todos', {
         title: payload.title,
         description: payload.description,
+        date: payload.date,
       });
       return { todo: response.data };
     } catch (error) {
@@ -105,6 +106,27 @@ export const toggleDeleteAsync = createAsyncThunk(
   }
 );
 
+// export const toggleUpdateAsync = createAsyncThunk(
+//     'todos/toggleUpdateAsync',
+//     async (payload) => {
+//       try {
+//         const response = await axios.patch(
+//           `http://localhost:7000/todos/${payload.id}`,
+//           {
+//             title: payload.title,
+//             description: payload.description,
+//             date: payload.date,
+//           }
+//         );
+//         return { id: response.data.id, title: response.title,
+//             description: response.description,
+//             date: response.date, };
+//       } catch (error) {
+//         console.error('Error toggling updating:', error.message);
+//       }
+//     }
+//   );
+
 
 const todoSlice = createSlice({
     name:"todos",
@@ -119,6 +141,7 @@ const todoSlice = createSlice({
                 id : Date.now(),
                 title: action.payload.title,
                 description: action.payload.description,
+                date: action.payload.date,
                 completed : false 
             };
             state.push(newTodo);
@@ -131,7 +154,15 @@ const todoSlice = createSlice({
         },
         deleteTodo: (state, action) => {
             return state.filter((todo)=> todo.id !== action.payload.id)
-        }
+        },
+        updateTodo: (state, action) => {
+            const index = state.findIndex(
+                (todo) => todo.id === action.payload.id
+            );
+            state[index].title = action.payload.title; 
+            state[index].description = action.payload.description; 
+            state[index].date = action.payload.date; 
+        },
     },
     extraReducers: {
         [getTodoAsync.pending]: (state, action) => {
@@ -152,7 +183,15 @@ const todoSlice = createSlice({
         },
         [toggleDeleteAsync.fulfilled]: (state, action) => {
            return state.filter((todo)=> todo.id !== action.payload.id)
-        }
+        },
+        // [toggleUpdateAsync.fulfilled]: (state, action) => {
+        //     const index = state.findIndex(
+        //         (todo) => todo.id === action.payload.id
+        //     );
+        //     state[index].title = action.payload.title; 
+        //     state[index].description = action.payload.description; 
+        //     state[index].date = action.payload.date; 
+        // }
     },
 });
 
@@ -162,6 +201,7 @@ export const {
     addTodo,
     toggleComplete,
     deleteTodo,
+    // updateTodo,
 
 } = todoSlice.actions;
 export default todoSlice.reducer; 

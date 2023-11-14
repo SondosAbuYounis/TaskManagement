@@ -171,11 +171,11 @@ const SingIn = ({setUserLogin}) => {
             {!isPasswordValid && (
             <p style={erroMessage}>Please enter a valid password</p>
             )}
-            <button type="submit"className=" px-3 pb-2 text-[#fff] bg-transparent border border-1 border-[#fff] font-light focus:outline-none hover:bg-[#ffffff] hover:text-[#373737] text-xs  rounded-lg text-xs px-5 py-2 mt-16 mb-8 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">SIGN IN</button>
+            <button onClick={handleLogin} type="submit"className=" px-3 pb-2 text-[#fff] bg-transparent border border-1 border-[#fff] font-light focus:outline-none hover:bg-[#ffffff] hover:text-[#373737] text-xs  rounded-lg text-xs px-5 py-2 mt-16 mb-8 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">SIGN IN</button>
             {error && <div style={invalidCredintials}>{error}</div>}
             
         </form>  
-        <div className='col-span-3 text-[0.75rem] mb-1 justify-self-center place-items-center text-[#CDCDCD]'>Don't have an account ? <Link to='/' className='hover:text-[#ffffff95]  underline decoration-solid'>Sing Up</Link></div>
+        <div className='col-span-3 text-[0.75rem] mb-1 justify-self-center place-items-center text-[#CDCDCD]'>Don't have an account ? <Link to='/signup' className='hover:text-[#ffffff95]  underline decoration-solid'>Sing Up</Link></div>
 
         
     </div>
