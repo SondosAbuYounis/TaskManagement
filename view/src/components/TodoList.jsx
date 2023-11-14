@@ -13,11 +13,13 @@ const TodoList = () => {
 	}, [dispatch]);
 
 	return (
+		<>
 		<div className='flex flex-row gap-4 justify-center mt-16 '>
 		{todos.map((todo) => (
 				<TodoItem id={todo.id} title={todo.title} description={todo.description} completed={todo.completed} />
 			))}
-				</div> 
+		</div> 
+		</>
 	);
 };
 
